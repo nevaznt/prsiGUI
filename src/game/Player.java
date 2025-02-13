@@ -137,12 +137,12 @@ public class Player extends Entity{
             String[] colors = {"red", "green", "yellow", "brown"};
             for(int i = 0; i < 4; i++) {
                 g2.drawImage(ast.getAsset(colors[i]+"symbol"), (gp.screenWidth/2)-(ast.cardWidth/2)-gp.scale-(ast.symbolWidth*4)+(ast.symbolWidth*i), (gp.screenHeight/2)-(ast.symbolHeight/2), ast.symbolWidth, ast.symbolHeight, null);
-                if(cursor==i && t.delay == 0) g2.drawImage(ast.getAsset("arrow"), (gp.screenWidth/2)-(ast.cardWidth/2)-gp.scale-(ast.symbolWidth*4)+(ast.symbolWidth*i)+((ast.symbolWidth/2)-(ast.arrowWidth/2)), (gp.screenHeight/2)+(ast.symbolHeight/2), ast.arrowWidth, ast.arrowHeight, null);
+                if(cursor==i && t.delay == 0 && t.playerMove) g2.drawImage(ast.getAsset("arrow"), (gp.screenWidth/2)-(ast.cardWidth/2)-gp.scale-(ast.symbolWidth*4)+(ast.symbolWidth*i)+((ast.symbolWidth/2)-(ast.arrowWidth/2)), (gp.screenHeight/2)+(ast.symbolHeight/2), ast.arrowWidth, ast.arrowHeight, null);
             }
         }
         else {
-            if(cursor == hand.size() && gp.game && t.delay == 0 && !gp.introAnimation) g2.drawImage(ast.getAsset("arrow"), ((gp.screenWidth/2)+ast.cardWidth + gp.scale)+((ast.cardWidth/2)-(ast.arrowWidth/2)), ((gp.screenHeight/2)+(ast.cardHeight/2))+(ast.arrowHeight/4), ast.arrowWidth, ast.arrowHeight, null);
-            else if(gp.game && t.delay == 0 && !gp.introAnimation){
+            if(cursor == hand.size() && gp.game && t.delay == 0 && !gp.introAnimation && t.playerMove) g2.drawImage(ast.getAsset("arrow"), ((gp.screenWidth/2)+ast.cardWidth + gp.scale)+((ast.cardWidth/2)-(ast.arrowWidth/2)), ((gp.screenHeight/2)+(ast.cardHeight/2))+(ast.arrowHeight/4), ast.arrowWidth, ast.arrowHeight, null);
+            else if(gp.game && t.delay == 0 && !gp.introAnimation && t.playerMove){
                 g2.drawImage(ast.getAsset(hand.get(cursor).getColor() + hand.get(cursor).getNumber()), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(cursor*(ast.cardWidth+spacing)), inventoryHeight, ast.cardWidth, ast.cardHeight, null);
                 g2.drawImage(ast.getAsset("arrow"), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(cursor*(ast.cardWidth+spacing))+(ast.cardWidth/2-ast.arrowWidth/2), gp.screenHeight-ast.arrowWidth, ast.arrowWidth, ast.arrowHeight, null);
             }

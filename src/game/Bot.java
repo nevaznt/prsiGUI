@@ -33,12 +33,9 @@ public class Bot extends Entity{
         if(canUse.size() == 1) {
             t.midDeck.add(placeCard(canUse.getFirst()));
             t.detectException();
-            System.out.println(t.midDeck.getLast().getColor()+"|"+t.midDeck.getLast().getNumber());
             return true;
         }
         else if(canUse.isEmpty() && !twelves.isEmpty()){
-            System.out.println("Changing color!");
-
             t.midDeck.add(placeCard(twelves.getFirst()));
             t.detectException();
 
@@ -58,7 +55,6 @@ public class Bot extends Entity{
             else if(max(colorCount)==2) c = "yellow";
             else if(max(colorCount)==3) c = "brown";
             t.colorChange = c;
-            System.out.println(t.midDeck.getLast().getColor()+"|"+t.midDeck.getLast().getNumber());
             return true;
         }
         else if(canUse.size() > 1){
@@ -73,8 +69,6 @@ public class Bot extends Entity{
 
             t.midDeck.add(placeCard(canUse.get(max(score))));
             t.detectException();
-            System.out.println(score[max(score)]);
-            System.out.println(t.midDeck.getLast().getColor()+"|"+t.midDeck.getLast().getNumber());
             return true;
         }
         else if(t.sedmActive>0) {
@@ -102,9 +96,9 @@ public class Bot extends Entity{
 
 
     public void paint(Graphics2D g2){
-        int spacing = -(int)(ast.cardWidth/3);
+        int spacing = -(int)(ast.cardWidth/1.5);
 
-        drawHand(g2, spacing, inventoryHeight, true, gp.anmBotHand);
+        drawHand(g2, spacing, inventoryHeight, false, gp.anmBotHand);
 
     }
 }
