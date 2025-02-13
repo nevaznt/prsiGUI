@@ -4,8 +4,6 @@ import main.GamePanel;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class Bot extends Entity{
 
