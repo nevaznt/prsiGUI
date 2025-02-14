@@ -19,5 +19,3 @@ public class Main {
         panel.startGameLoop();
     }
 }
-
-// TODO card spacing still sucks

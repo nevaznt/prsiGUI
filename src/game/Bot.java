@@ -15,7 +15,7 @@ public class Bot extends Entity{
 
     }
 
-    public boolean update(Table t){
+    public boolean update(Table t, int plrhandsize){
         if(thinkingTime == 0) thinkingTime = (int)(((Math.random())+0.25)*gp.FPS);
         if(thinkingTime > 0) thinkingTime--;
         if(thinkingTime != 0) return false;
@@ -28,35 +28,21 @@ public class Bot extends Entity{
             else if(!t.esoActive && t.sedmActive == 0 && hand.get(i).getNumber() == 12) twelves.add(i);
         }
 
+        if(plrhandsize == 1 && !twelves.isEmpty()){
+            changeColor(t, twelves.getFirst());
+            return true;
+        }
+
         if(canUse.size() == 1) {
             t.midDeck.add(placeCard(canUse.getFirst()));
             t.detectException();
             return true;
         }
-        else if(canUse.isEmpty() && !twelves.isEmpty()){
-            t.midDeck.add(placeCard(twelves.getFirst()));
-            t.detectException();
-
-            int[] colorCount = {0, 0, 0, 0};
-            for(int i = 0; i < hand.size(); i++){
-                if(hand.get(i).getNumber() == 12) continue;
-                switch(hand.get(i).getColor()){
-                    case "red" -> colorCount[0]++;
-                    case "green" -> colorCount[1]++;
-                    case "yellow" -> colorCount[2]++;
-                    case "brown" -> colorCount[3]++;
-                }
-            }
-
-            String c = "";
-            if(max(colorCount)==0) c = "red";
-            else if(max(colorCount)==1) c = "green";
-            else if(max(colorCount)==2) c = "yellow";
-            else if(max(colorCount)==3) c = "brown";
-            t.colorChange = c;
+        if(canUse.isEmpty() && !twelves.isEmpty()){
+            changeColor(t, twelves.getFirst());
             return true;
         }
-        else if(canUse.size() > 1){
+        if(canUse.size() > 1){
             int[] score = new int[canUse.size()];
             for(int i = 0; i < canUse.size(); i++){
                 for(int j = 0; j < hand.size(); j++){
@@ -70,17 +56,40 @@ public class Bot extends Entity{
             t.detectException();
             return true;
         }
-        else if(t.sedmActive>0) {
+        if(t.sedmActive>0) {
             for(int i = 0; i < 4 * t.sedmActive; i++) if(t.checkDeck()) reciveCard(t.takeOutOfDeck(0));
             t.sedmActive = 0;
             return true;
         }
-        else if(canUse.isEmpty() && twelves.isEmpty() && !t.esoActive) {
+        if(canUse.isEmpty() && twelves.isEmpty() && !t.esoActive) {
             if(t.checkDeck()) reciveCard(t.takeOutOfDeck(0));
             return true;
         }
 
         return false;
+    }
+
+    private void changeColor(Table t, int card){
+        t.midDeck.add(placeCard(card));
+        t.detectException();
+
+        int[] colorCount = {0, 0, 0, 0};
+        for(int i = 0; i < hand.size(); i++){
+            if(hand.get(i).getNumber() == 12) continue;
+            switch(hand.get(i).getColor()){
+                case "red" -> colorCount[0]++;
+                case "green" -> colorCount[1]++;
+                case "yellow" -> colorCount[2]++;
+                case "brown" -> colorCount[3]++;
+            }
+        }
+
+        String c = "";
+        if(max(colorCount)==0) c = "red";
+        else if(max(colorCount)==1) c = "green";
+        else if(max(colorCount)==2) c = "yellow";
+        else if(max(colorCount)==3) c = "brown";
+        t.colorChange = c;
     }
 
     private int max(int[] arr){

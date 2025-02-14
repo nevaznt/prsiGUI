@@ -24,7 +24,7 @@ public class Entity {
 
     protected void drawHand(Graphics g2, int spacing, int inventoryHeight, boolean showCard, int anmVal){
         for(int i = 0; i < hand.size()-anmVal; i++){
-            if(showCard) g2.drawImage(ast.getAsset(hand.get(i).getColor() + hand.get(i).getNumber()), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(i*(ast.cardWidth+spacing)), inventoryHeight, ast.cardWidth, ast.cardHeight, null);
+            if(showCard) g2.drawImage(ast.getAsset(hand.get(i).getColor() + hand.get(i).getNumber()), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(i*(ast.cardWidth+spacing))+(spacing/2), inventoryHeight, ast.cardWidth, ast.cardHeight, null);
             else g2.drawImage(ast.getAsset("otherside"), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(i*(ast.cardWidth+spacing))+(spacing/2), inventoryHeight, ast.cardWidth, ast.cardHeight, null);
         }
     }

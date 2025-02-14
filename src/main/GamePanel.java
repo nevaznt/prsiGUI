@@ -7,12 +7,12 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
     final int baseWidth = 16;
     final int baseHeight = 9;
-    public final int scale = 120;
-    public final double cardScale = 0.5;
-    public final double otherElementsScale = 0.75;
+    public final int scale = 80;
+    public final double cardScale = 0.33;
+    public final double otherElementsScale = 0.5;
     public final int screenWidth = baseWidth * scale;
     public final int screenHeight = baseHeight * scale;
-    private final int noOfCardOnStart = 6;
+    private final int noOfCardOnStart = 4;
     public boolean game = true;
     public int playerWinsCounter;
     public boolean introAnimation;
@@ -107,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable{
                     table.playerMove = false;
                     table.botSkip = 0;
                 }
-            } else if (bot.update(table)) table.playerMove = true;
+            } else if (bot.update(table, player.hand.size())) table.playerMove = true;
 
             table.update(player, bot);
         }

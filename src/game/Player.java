@@ -129,7 +129,7 @@ public class Player extends Entity{
 
     public void paint(Graphics2D g2, Table t){
         int spacing = 0;
-        if(hand.size()*ast.cardWidth > (gp.screenWidth)) spacing = (((gp.screenWidth-100)-(hand.size()*ast.cardWidth))/hand.size());
+        if(hand.size()*ast.cardWidth > (gp.screenWidth)) spacing = (((gp.screenWidth-(ast.cardWidth*2))-(hand.size()*ast.cardWidth))/hand.size());
 
         drawHand(g2, spacing, inventoryHeight, true, gp.anmPlayerHand);
 
@@ -143,8 +143,8 @@ public class Player extends Entity{
         else {
             if(cursor == hand.size() && gp.game && t.delay == 0 && !gp.introAnimation && t.playerMove) g2.drawImage(ast.getAsset("arrow"), ((gp.screenWidth/2)+ast.cardWidth + gp.scale)+((ast.cardWidth/2)-(ast.arrowWidth/2)), ((gp.screenHeight/2)+(ast.cardHeight/2))+(ast.arrowHeight/4), ast.arrowWidth, ast.arrowHeight, null);
             else if(gp.game && t.delay == 0 && !gp.introAnimation && t.playerMove){
-                g2.drawImage(ast.getAsset(hand.get(cursor).getColor() + hand.get(cursor).getNumber()), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(cursor*(ast.cardWidth+spacing)), inventoryHeight, ast.cardWidth, ast.cardHeight, null);
-                g2.drawImage(ast.getAsset("arrow"), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(cursor*(ast.cardWidth+spacing))+(ast.cardWidth/2-ast.arrowWidth/2), gp.screenHeight-ast.arrowWidth, ast.arrowWidth, ast.arrowHeight, null);
+                g2.drawImage(ast.getAsset(hand.get(cursor).getColor() + hand.get(cursor).getNumber()), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(cursor*(ast.cardWidth+spacing))+(spacing/2), inventoryHeight, ast.cardWidth, ast.cardHeight, null);
+                g2.drawImage(ast.getAsset("arrow"), (gp.screenWidth/2)-((hand.size()*ast.cardWidth+hand.size()*spacing)/2)+(cursor*(ast.cardWidth+spacing))+(ast.cardWidth/2-ast.arrowWidth/2)+(spacing/2), gp.screenHeight-ast.arrowWidth, ast.arrowWidth, ast.arrowHeight, null);
             }
         }
 
