@@ -1,6 +1,6 @@
 Karetní hra Prší v javě.
 
-Ovládání šikama/WSAD a enter.
+Ovládání šipkama/WSAD a enter.
 
 ![image](https://github.com/user-attachments/assets/fda07770-3ee9-4af8-89bd-7c746b16e629)
 
