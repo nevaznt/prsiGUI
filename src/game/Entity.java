@@ -29,6 +29,12 @@ public class Entity {
         }
     }
 
+    public String handToString(){
+        String text = "";
+        for(int i = 0; i < hand.size(); i++) text += "\t" + hand.get(i).getColor() + "|" + hand.get(i).getNumber() + "\n";
+        return "HAND: \n" + text;
+    }
+
     public void reciveCard(Card c){
         hand.add(new Card(c.getColor(), c.getNumber()));
     }

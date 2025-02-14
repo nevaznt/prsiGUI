@@ -15,16 +15,29 @@ public class Card {
     final private int number;
     private AffineTransform rotation;
     public boolean rotationAssigned;
+    public int rofsx = 0;
+    public int rofsy = 0;
+    public boolean offsetAssingned;
 
     public Card(String color, int number){
         this.color = color;
         this.number = number;
         rotationAssigned = false;
+        offsetAssingned = false;
         rotation = new AffineTransform();
     }
 
     public AffineTransform getRotation(){
         return rotation;
+    }
+
+    public void assignOffset(){
+        if(Math.random()>0.5) rofsx = (int)(Math.random()*8);
+        else rofsx = -(int)(Math.random()*8);
+        if(Math.random()>0.5) rofsy = (int)(Math.random()*8);
+        else rofsy = -(int)(Math.random()*8);
+
+        offsetAssingned = true;
     }
 
     public void assignRotation(int screenWidth, int screenHeight){

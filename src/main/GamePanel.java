@@ -124,7 +124,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
 
-    private void setFont(Graphics2D g2, Color c, double scale){
+    public void setFont(Graphics2D g2, Color c, double scale){
         int fontSize = (int)(scale*this.scale);
         g2.setColor(c);
         g2.setFont(new Font("Arial", Font.BOLD, fontSize));

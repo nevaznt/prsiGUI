@@ -29,6 +29,7 @@ public class AssetManager {
             assets.add(ImageIO.read(new FileInputStream("img/yellow/yellowsymbol.png")));
             assets.add(ImageIO.read(new FileInputStream("img/brown/brownsymbol.png")));
             assets.add(ImageIO.read(new FileInputStream("img/stone.png")));
+            assets.add(ImageIO.read(new FileInputStream("img/shadow.png")));
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -52,6 +53,7 @@ public class AssetManager {
             case "yellowsymbol" -> { return assets.get(36); }
             case "brownsymbol" -> { return assets.get(37); }
             case "stone" -> { return assets.get(38); }
+            case "shadow" -> { return assets.get(39); }
         }
 
         int n = 0;

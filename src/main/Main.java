@@ -20,4 +20,4 @@ public class Main {
     }
 }
 
-// TODO better bot algorithm
+// TODO card spacing still sucks

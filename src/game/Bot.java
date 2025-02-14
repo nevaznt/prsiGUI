@@ -25,7 +25,7 @@ public class Bot extends Entity{
 
         for(int i = 0; i < hand.size(); i++) {
             if(t.applyrules(hand.get(i)) && hand.get(i).getNumber() != 12) canUse.add(i);
-            else if(t.applyrules(hand.get(i)) && hand.get(i).getNumber() == 12) twelves.add(i);
+            else if(!t.esoActive && t.sedmActive == 0 && hand.get(i).getNumber() == 12) twelves.add(i);
         }
 
         if(canUse.size() == 1) {
@@ -39,6 +39,7 @@ public class Bot extends Entity{
 
             int[] colorCount = {0, 0, 0, 0};
             for(int i = 0; i < hand.size(); i++){
+                if(hand.get(i).getNumber() == 12) continue;
                 switch(hand.get(i).getColor()){
                     case "red" -> colorCount[0]++;
                     case "green" -> colorCount[1]++;
@@ -61,7 +62,7 @@ public class Bot extends Entity{
                 for(int j = 0; j < hand.size(); j++){
                     if(hand.get(j) == hand.get(canUse.get(i))) continue;
                     if(hand.get(canUse.get(i)).getColor().equals(hand.get(j).getColor()) && hand.get(j).getNumber() != 12) score[i]++;
-                    else if(hand.get(canUse.get(i)).getNumber() == hand.get(j).getNumber()) score[i]++;
+                    else if(hand.get(canUse.get(i)).getNumber() == hand.get(j).getNumber() && hand.get(j).getNumber() != 12) score[i]++;
                 }
             }
 

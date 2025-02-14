@@ -28,7 +28,8 @@ public class Table {
         Collections.shuffle(deck);
 
         midDeck.add(takeOutOfDeck(0));
-        midDeck.getFirst().rotationAssigned = true;
+        //midDeck.getFirst().rotationAssigned = true;
+        midDeck.getFirst().offsetAssingned = true;
 
         this.gp = gp;
         this.ast = ast;
@@ -105,17 +106,19 @@ public class Table {
     }
 
     public void paint(Graphics2D g2){
-
         if(gp.anmStage < 2){
             for(int i = 0; i < midDeck.size(); i++){
-                if(!midDeck.get(i).rotationAssigned) midDeck.get(i).assignRotation(gp.screenWidth, gp.screenHeight);
-                g2.setTransform(midDeck.get(i).getRotation());
-                g2.drawImage(ast.getAsset(midDeck.getLast().getColor()+midDeck.getLast().getNumber()), (gp.screenWidth/2)-(ast.cardWidth/2), (gp.screenHeight/2)-(ast.cardHeight/2), ast.cardWidth, ast.cardHeight, null);
+                //if(!midDeck.get(i).rotationAssigned) midDeck.get(i).assignRotation(gp.screenWidth, gp.screenHeight);
+                //g2.setTransform(midDeck.get(i).getRotation());
+                if(!midDeck.get(i).offsetAssingned) midDeck.get(i).assignOffset();
+                g2.drawImage(ast.getAsset(midDeck.getLast().getColor()+midDeck.getLast().getNumber()), (gp.screenWidth/2)-(ast.cardWidth/2)+midDeck.get(i).rofsx, (gp.screenHeight/2)-(ast.cardHeight/2)+midDeck.get(i).rofsy, ast.cardWidth, ast.cardHeight, null);
             }
-            g2.setTransform(new AffineTransform());
+            //g2.setTransform(new AffineTransform());
         }
 
         if(gp.anmStage == 0) {
+            if(deck.isEmpty()) g2.drawImage(ast.getAsset("shadow"), (gp.screenWidth / 2) + ast.cardWidth + gp.scale, (gp.screenHeight / 2) - (ast.cardHeight / 2), ast.cardWidth, ast.cardHeight, null);
+
             int offsetMultiplier = 1;
             for (int i = 0; i < deck.size(); i++)
                 g2.drawImage(ast.getAsset("otherside"), (gp.screenWidth / 2) + ast.cardWidth + gp.scale, (gp.screenHeight / 2) - (ast.cardHeight / 2) - (i * offsetMultiplier), ast.cardWidth, ast.cardHeight, null);
